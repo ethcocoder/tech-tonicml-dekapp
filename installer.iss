@@ -40,8 +40,7 @@ LicenseFile=LICENSE.txt
 
 ; Visual Settings
 WizardStyle=modern
-WizardImageFile=compiler:WizModernImage-IS.bmp
-WizardSmallImageFile=compiler:WizModernSmallImage-IS.bmp
+
 
 ; Uninstall
 UninstallDisplayIcon={app}\{#MyAppExeName}
