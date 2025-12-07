@@ -110,10 +110,16 @@
             }
         }
 
-        .logo-placeholder {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        .logo-container {
+            margin-bottom: 2rem;
             animation: pulse 2s ease-in-out infinite;
+        }
+
+        .logo-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
         }
 
         @keyframes pulse {
@@ -132,7 +138,9 @@
 
 <body>
     <div class="splash-container">
-        <div class="logo-placeholder">🎓</div>
+        <div class="logo-container">
+            <img src="assets/icons/techtonicml.png" alt="Tech-Tonicml Logo" class="logo-image">
+        </div>
 
         <h1 class="welcome-text">
             Welcome to<br>Tech-Tonic ML Platform

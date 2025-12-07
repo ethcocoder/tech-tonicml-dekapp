@@ -963,5 +963,167 @@ Successfully set up development environment and tested the desktop application.
 
 ---
 
+---
+
+## Session 4: Logo Integration & Easy Launcher (2025-12-07 11:40-11:52)
+
+### Overview
+Integrated custom Tech-Tonicml logo into splash screen and created batch file for easy application launching.
+
+---
+
+### Changes Made
+
+#### 1. Created `run_app.bat` - Easy Launcher
+**File:** `run_app.bat`  
+**Lines:** 6  
+**Purpose:** One-click application launcher for Windows
+
+**Content:**
+```batch
+@echo off
+echo Starting Tech-Tonicml Platform Desktop App...
+cd /d "%~dp0"
+.\venv\Scripts\python.exe src\main.py
+pause
+```
+
+**Usage:** Double-click to launch the app!
+
+**Impact:** Eliminates need to use command line for starting the app.
+
+---
+
+#### 2. Updated `src/config.py` - Added Icon Path
+**Change:** Added icon file path configuration
+
+**Added:**
+```python
+ICON_PATH = 'web/assets/icons/techtonicml.png'
+```
+
+**Impact:** Centralized icon path for easy reference.
+
+---
+
+#### 3. Updated `web/splash.html` - Integrated Logo
+**Changes:**
+1. **HTML:** Replaced emoji (🎓) with actual logo image
+2. **CSS:** Updated styling for logo display
+
+**Before:**
+```html
+<div class="logo-placeholder">🎓</div>
+```
+
+**After:**
+```html
+<div class="logo-container">
+    <img src="assets/icons/techtonicml.png" alt="Tech-Tonicml Logo" class="logo-image">
+</div>
+```
+
+**CSS Styling:**
+```css
+.logo-container {
+    margin-bottom: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.logo-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+```
+
+**Features:**
+- 120x120px logo size
+- Pulsing animation (2s cycle)
+- Drop shadow for depth
+- Maintains aspect ratio (object-fit: contain)
+
+**Impact:** Professional branded logo replaces generic emoji.
+
+---
+
+### Visual Updates
+
+**Splash Screen Now Shows:**
+```
+┌─────────────────────────────────────┐
+│                                     │
+│    [Tech-Tonicml Logo]              │
+│    (120x120, pulsing)               │
+│                                     │
+│        Welcome to                   │
+│    Tech-Tonic ML Platform          │
+│                                     │
+│         ○ (spinning)                │
+│                                     │
+│        Powered by                   │
+│      Natnael Ermiyas               │
+│     [ Ethco Coders ]               │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+---
+
+### Testing
+
+**Tested:** Application launched successfully with new logo  
+**Status:** ✅ Logo displays correctly  
+**Animation:** ✅ Pulse animation working  
+**Resolution:** ✅ Crisp display at 120x120px
+
+---
+
+### Files Modified
+
+| File | Changes | Lines Modified |
+|------|---------|----------------|
+| `src/config.py` | Added ICON_PATH | +1 |
+| `web/splash.html` | Logo HTML + CSS | +8, -4 |
+| `run_app.bat` | Created launcher | +6 (new) |
+
+---
+
+### User Experience Improvements
+
+1. **Professional Branding:**
+   - Custom Tech-Tonicml logo on splash screen
+   - Consistent brand identity
+
+2. **Easier Launching:**
+   - `run_app.bat` for one-click start
+   - No need to remember terminal commands
+
+3. **Visual Polish:**
+   - Logo with drop shadow
+   - Smooth pulse animation
+   - Professional appearance
+
+---
+
+### Changelog - Session 4
+
+#### 2025-12-07 11:40-11:52 EAT
+
+**Created:**
+- `run_app.bat` - Windows batch file for easy launching
+
+**Updated:**
+- `src/config.py` - Added icon path configuration
+- `web/splash.html` - Integrated custom logo, updated CSS styling
+
+**Removed:**
+- Emoji icon (🎓) replaced with actual brand logo
+
+**Status:** Logo successfully integrated, easy launcher created!
+
+---
+
 *This progress log will be updated with each development session.*
 

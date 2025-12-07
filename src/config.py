@@ -36,6 +36,7 @@ class Config:
     # Paths
     WEB_DIR = 'web'
     RESOURCES_DIR = 'resources'
+    ICON_PATH = 'web/assets/icons/techtonicml.png'
     
     # UI Settings
     DEFAULT_THEME = 'light'
