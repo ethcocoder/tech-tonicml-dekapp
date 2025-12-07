@@ -430,15 +430,420 @@ This session focused entirely on **planning and documentation**. No code impleme
 
 ---
 
-## Future Sessions
+## Session 2: Core Implementation - Website Wrapper & Splash Screen (2025-12-07 11:15-11:24)
 
-The next session should focus on:
-1. Setting up the actual project structure
-2. Creating the virtual environment
-3. Installing dependencies
-4. Implementing the basic PyWebView window
-5. Testing the initial build
+### Overview
+**Major Pivot:** Clarified project purpose - building a desktop wrapper for the Tech-Tonicml ML Course Platform (tech-tonicml.gt.tc) with a branded splash screen, NOT a standalone editor app.
+
+**Key Achievement:** Implemented complete desktop application that:
+1. Shows beautiful splash screen with branding
+2. Automatically loads the website in a native desktop window
+
+---
+
+### Changes Made
+
+#### 1. Created Project Structure
+**Action:** Set up complete directory structure
+
+**Directories Created:**
+```
+tech-tonicml deckapp/
+├── src/                    # Python source code
+├── web/                    # Web assets (splash screen)
+│   ├── css/
+│   ├── js/
+│   └── assets/
+│       ├── images/
+│       └── icons/
+└── resources/              # Application resources (icons, etc.)
+```
+
+**Impact:** Organized foundation for the desktop application.
+
+---
+
+#### 2. Created `requirements.txt`
+**File:** `requirements.txt`  
+**Lines:** 2  
+**Purpose:** Python dependencies
+
+**Content:**
+```txt
+pywebview>=4.0
+pyinstaller>=5.0
+```
+
+**Dependencies:**
+- **pywebview** - Creates native desktop window with webview
+- **pyinstaller** - Builds standalone executable
+
+**Impact:** Defines minimal dependencies needed for desktop wrapper.
+
+---
+
+#### 3. Created `src/config.py`
+**File:** `src/config.py`  
+**Lines:** 41  
+**Purpose:** Application configuration
+
+**Key Settings:**
+```python
+APP_NAME = 'Tech-Tonicml Platform'
+APP_AUTHOR = 'Natnael Ermiyas - Ethco Coders'
+WEBSITE_URL = 'https://tech-tonicml.gt.tc'
+WINDOW_WIDTH = 1400
+WINDOW_HEIGHT = 900
+SPLASH_DURATION = 3000  # milliseconds
+```
+
+**Features:**
+- Application metadata (name, version, author)
+- Website URL configuration
+- Window dimensions optimized for ML platform (1400x900)
+- Splash screen duration setting
+- Debug mode toggle
+- Path constants
+
+**Impact:** Centralized configuration for easy customization.
+
+---
+
+#### 4. Created `src/api.py`
+**File:** `src/api.py`  
+**Lines:** 255  
+**Purpose:** Python API for potential future features
+
+**Note:** This file was created but is NOT currently used in the website wrapper. Kept for future enhancements if needed (file operations, local caching, etc.).
+
+**Methods Included:**
+- File operations (open, save, read, write)
+- Settings management
+- System information retrieval
+- Text processing utilities
+
+**Impact:** Provides foundation for future desktop-specific features.
+
+---
+
+#### 5. Created `src/main.py` ⭐ **CORE FILE**
+**File:** `src/main.py`  
+**Lines:** 62  
+**Purpose:** Application entry point
+
+**Implementation:**
+```python
+def get_splash_path():
+    """Get splash screen HTML path (works in both dev and production)"""
+    if getattr(sys, 'frozen', False):
+        base_path = Path(sys._MEIPASS)  # PyInstaller bundle
+    else:
+        base_path = Path(__file__).parent.parent  # Development
+    return str(base_path / Config.WEB_DIR / 'splash.html')
+
+def main():
+    """Start application with splash screen"""
+    window = webview.create_window(
+        title=Config.APP_NAME,
+        url=get_splash_path(),  # Loads splash first
+        width=1400,
+        height=900,
+        resizable=True,
+        min_size=(1024, 768)
+    )
+    webview.start(debug=Config.DEBUG, gui='edgechromium')
+```
+
+**Flow:**
+1. Application starts
+2. Creates window with splash screen
+3. Splash screen auto-redirects to website after 3 seconds
+
+**Impact:** Main application logic - loads splash then website.
+
+---
+
+#### 6. Created `web/splash.html` ⭐ **KEY FEATURE**
+**File:** `web/splash.html`  
+**Lines:** 140  
+**Purpose:** Branded splash screen
+
+**Design Features:**
+- **Gradient Background:** Purple gradient (135deg, #667eea to #764ba2)
+- **Center Message:** "Welcome to Tech-Tonic ML Platform" (3rem, bold, white)
+- **Branding:** 
+  - "Powered by Natnael Ermiyas"
+  - "Ethco Coders" company badge
+- **Loading Spinner:** Animated rotating circle
+- **Animations:**
+  - `fadeIn` - Overall appearance
+  - `slideDown` - Welcome text
+  - `slideUp` - Powered by section
+  - `pulse` - Logo icon (🎓)
+  - `spin` - Loading spinner
+
+**Auto-Redirect:**
+```javascript
+setTimeout(function() {
+    window.location.href = 'https://tech-tonicml.gt.tc';
+}, 3000);
+```
+
+**Visual Layout:**
+```
+┌─────────────────────────────────────┐
+│                                     │
+│              🎓 (pulsing)           │
+│                                     │
+│        Welcome to                   │
+│    Tech-Tonic ML Platform          │
+│                                     │
+│         ○ (spinning)                │
+│                                     │
+│        Powered by                   │
+│      Natnael Ermiyas               │
+│     [ Ethco Coders ]               │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+**Impact:** Professional branded first impression lasting 3 seconds.
+
+---
+
+#### 7. Created `web/css/style.css`
+**File:** `web/css/style.css`  
+**Lines:** 470  
+**Purpose:** UI styling (for potential future local pages)
+
+**Note:** Currently not actively used since app loads external website, but available for future dashboard or settings pages.
+
+**Features:**
+- CSS custom properties (variables)
+- Modern design system
+- Responsive layouts
+- Smooth animations
+- Custom scrollbar styling
+
+**Impact:** Ready for future UI enhancements.
+
+---
+
+#### 8. Created `web/js/api.js`
+**File:** `web/js/api.js`  
+**Lines:** 130  
+**Purpose:** JavaScript API wrapper
+
+**Note:** Not currently used but available for future Python-JS communication.
+
+**Impact:** Infrastructure for future desktop features.
+
+---
+
+#### 9. Created `web/js/app.js`
+**File:** `web/js/app.js`  
+**Lines:** 380  
+**Purpose:** Application logic
+
+**Note:** Not currently used in website wrapper mode.
+
+**Impact:** Available for future local features.
+
+---
+
+#### 10. Created `web/index.html`
+**File:** `web/index.html`  
+**Lines:** 175  
+**Purpose:** Original multi-page UI
+
+**Note:** Not currently used. Application loads splash.html → website directly.
+
+**Content:**
+- Home page with features list
+- Text editor page
+- About page
+- Links to tech-tonicml.gt.tc
+
+**Impact:** Available as fallback or for future offline mode.
+
+---
+
+#### 11. Created `.gitignore`
+**File:** `.gitignore`  
+**Lines:** 42  
+**Purpose:** Git exclusions
+
+**Excludes:**
+- Python cache (`__pycache__/`, `*.pyc`)
+- Virtual environment (`venv/`)
+- Build artifacts (`build/`, `dist/`)
+- IDE files (`.vscode/`, `.idea/`)
+- OS files (`.DS_Store`, `Thumbs.db`)
+
+**Impact:** Keeps repository clean.
+
+---
+
+#### 12. Updated `README.md`
+**File:** `README.md`  
+**Updates:** Header, description, usage section
+
+**Key Changes:**
+```markdown
+# Tech-Tonicml Platform - Desktop App
+
+Desktop application wrapper for the Tech-Tonicml ML Course Platform.
+
+👨‍💻 **Developer:** Natnael Ermiyas  
+🏢 **Company:** Ethco Coders
+```
+
+**Usage Section:**
+1. Splash screen appears (3 seconds)
+2. Platform loads automatically
+3. Full access to tech-tonicml.gt.tc in native window
+
+**Impact:** Accurate documentation of actual app purpose.
+
+---
+
+### Technical Architecture
+
+#### Application Flow
+
+```
+User Launches App
+       ↓
+main.py executes
+       ↓
+Creates PyWebView window (1400x900)
+       ↓
+Loads: web/splash.html
+       ↓
+┌──────────────────────────────┐
+│   SPLASH SCREEN (3 seconds)  │
+│                              │
+│   🎓                         │
+│   Welcome to                 │
+│   Tech-Tonic ML Platform    │
+│                              │
+│   Powered by                 │
+│   Natnael Ermiyas           │
+│   Ethco Coders              │
+└──────────────────────────────┘
+       ↓
+JavaScript setTimeout triggers
+       ↓
+Auto-redirect to: https://tech-tonicml.gt.tc
+       ↓
+┌──────────────────────────────┐
+│                              │
+│   FULL WEBSITE LOADS         │
+│   (ML Course Platform)       │
+│                              │
+│   - Browse courses           │
+│   - Watch lectures           │
+│   - Take quizzes             │
+│   - Track progress           │
+│                              │
+└──────────────────────────────┘
+```
+
+---
+
+### File Statistics - Session 2
+
+| File | Lines | Type | Status |
+|------|-------|------|--------|
+| `requirements.txt` | 2 | Config | ✅ Active |
+| `src/config.py` | 41 | Python | ✅ Active |
+| `src/main.py` | 62 | Python | ✅ Active (Core) |
+| `src/api.py` | 255 | Python | ⏸️ Future use |
+| `web/splash.html` | 140 | HTML | ✅ Active (Key) |
+| `web/index.html` | 175 | HTML | ⏸️ Not used |
+| `web/css/style.css` | 470 | CSS | ⏸️ Future use |
+| `web/js/api.js` | 130 | JS | ⏸️ Future use |
+| `web/js/app.js` | 380 | JS | ⏸️ Future use |
+| `.gitignore` | 42 | Config | ✅ Active |
+| `README.md` | ~95 | Docs | ✅ Updated |
+| **Total** | **1,792** | **11 files** | **3 core, 8 ready** |
+
+---
+
+### Active vs. Ready Files
+
+**Currently Active (Used by app):**
+1. `src/main.py` - Entry point ⭐
+2. `src/config.py` - Configuration ⭐
+3. `web/splash.html` - Splash screen ⭐
+4. `requirements.txt` - Dependencies
+5. `.gitignore` - Git config
+
+**Ready for Future Use:**
+1. `src/api.py` - Python API for desktop features
+2. `web/index.html` - Local UI pages
+3. `web/css/style.css` - Styling
+4. `web/js/api.js` - JS-Python bridge
+5. `web/js/app.js` - Client logic
+
+---
+
+### Branding Elements
+
+**Company:** Ethco Coders  
+**Developer:** Natnael Ermiyas  
+**Platform:** Tech-Tonicml ML Course Platform  
+**Website:** tech-tonicml.gt.tc
+
+**Visual Identity:**
+- **Colors:** Purple gradient (#667eea → #764ba2)
+- **Icon:** 🎓 (Education/Learning)
+- **Typography:** System fonts (clean, professional)
+- **Animation:** Smooth, professional transitions
+
+---
+
+### Next Steps
+
+**Immediate:**
+1. ✅ Project structure created
+2. ✅ Core files implemented
+3. ✅ Splash screen designed
+4. ⏳ Test the application
+5. ⏳ Build executable with PyInstaller
+6. ⏳ Create Windows installer
+
+**Future Enhancements:**
+- Add app icon/logo
+- Implement offline mode with cached content
+- Add update notification system
+- Create settings panel
+- Implement download manager for course materials
+- Add dark mode support
+
+---
+
+### Changelog - Session 2
+
+#### 2025-12-07 11:15-11:24 EAT
+
+**Created:**
+- `requirements.txt` - Python dependencies
+- `src/config.py` - App configuration with branding
+- `src/main.py` - Entry point with splash screen logic
+- `src/api.py` - Python API (future use)
+- `web/splash.html` - Beautiful branded splash screen ⭐
+- `web/index.html` - Local UI (future use)
+- `web/css/style.css` - Styling (future use)
+- `web/js/api.js` - JS API wrapper (future use)
+- `web/js/app.js` - App logic (future use)
+- `.gitignore` - Git exclusions
+
+**Updated:**
+- `README.md` - Corrected to reflect website wrapper purpose
+- `progress.md` - This file, with complete Session 2 documentation
 
 ---
 
 *This progress log will be updated with each development session.*
+

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tech-Tonicml Deckapp - A Python-powered desktop application">
+    <meta name="author" content="ethcocoder">
+    <title>Tech-Tonicml Deckapp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Application Header -->
+    <header class="app-header">
+        <div class="header-left">
+            <h1 class="app-title">Tech-Tonicml Deckapp</h1>
+        </div>
+        <div class="header-right">
+            <button id="settingsBtn" class="icon-btn" title="Settings">
+                ⚙️
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Application Area -->
+    <main class="app-main">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="nav-menu">
+                <a href="#home" class="nav-item active" data-page="home">
+                    🏠 Home
+                </a>
+                <a href="#editor" class="nav-item" data-page="editor">
+                    📝 Editor
+                </a>
+                <a href="#about" class="nav-item" data-page="about">
+                    ℹ️ About
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Content Area -->
+        <section class="content">
+            
+            <!-- ==================== Home Page ==================== -->
+            <div id="home" class="page active">
+                <h2>Welcome to Tech-Tonicml Deckapp! 👋</h2>
+                <p>
+                    A modern desktop application built with Python and webview technology.
+                    This app combines the power of Python backend with modern web frontend.
+                </p>
+
+                <div class="card">
+                    <h3>🚀 Features</h3>
+                    <ul style="color: var(--text-secondary); line-height: 1.8;">
+                        <li>📂 File operations (Open, Save, Create)</li>
+                        <li>📝 Built-in text editor</li>
+                        <li>💾 Persistent settings storage</li>
+                        <li>🖥️ Cross-platform support</li>
+                        <li>🎨 Modern, responsive UI</li>
+                        <li>🔌 Python-JavaScript bridge</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🧪 Test Python API</h3>
+                    <p>Click the button below to test the Python backend connection:</p>
+                    <button id="demoBtn" class="btn btn-primary">
+                        🚀 Call Python API
+                    </button>
+                    <div id="result" class="result-box mt-2"></div>
+                </div>
+
+                <div class="card">
+                    <h3>🌐 Visit Our Website</h3>
+                    <p>
+                        For more information and updates, visit our website at 
+                        <a href="https://tech-tonicml.gt.tc" 
+                           target="_blank" 
+                           style="color: var(--primary-color); text-decoration: underline;">
+                            tech-tonicml.gt.tc
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ==================== Editor Page ==================== -->
+            <div id="editor" class="page">
+                <h2>Text Editor 📝</h2>
+                <p>Create, open, and save text files with this simple editor.</p>
+
+                <div class="editor-toolbar">
+                    <button id="newBtn" class="btn">
+                        ➕ New
+                    </button>
+                    <button id="openBtn" class="btn">
+                        📂 Open
+                    </button>
+                    <button id="saveBtn" class="btn btn-success">
+                        💾 Save
+                    </button>
+                </div>
+
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <textarea 
+                        id="editor-content" 
+                        class="editor-textarea" 
+                        placeholder="Start typing your text here...
+                        
+You can use this editor to:
+• Create new text files
+• Open existing files from your computer
+• Save your work
+• Edit .txt and .md files
+
+Try it out!"
+                        style="border: none; border-radius: 0; height: 500px;"
+                    ></textarea>
+                </div>
+
+                <div class="editor-info">
+                    <span>
+                        <strong>Current File:</strong> 
+                        <span id="currentFile">Untitled</span>
+                    </span>
+                    <span id="charCount">0 characters</span>
+                </div>
+            </div>
+
+            <!-- ==================== About Page ==================== -->
+            <div id="about" class="page">
+                <h2>About 💡</h2>
+                
+                <div class="card">
+                    <div id="appInfo">
+                        <h3>📱 Application Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <strong>Name</strong>
+                                <span>Tech-Tonicml Deckapp</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Version</strong>
+                                <span>1.0.0</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Author</strong>
+                                <span>ethcocoder</span>
+                            </div>
+                            <div class="info-item" style="grid-column: 1 / -1;">
+                                <strong>Website</strong>
+                                <span>
+                                    <a href="https://tech-tonicml.gt.tc" 
+                                       target="_blank" 
+                                       style="color: var(--primary-color);">
+                                        tech-tonicml.gt.tc
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div id="systemInfo">
+                        <h3>💻 System Information</h3>
+                        <p style="color: var(--text-muted);">Loading system information...</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🛠️ Technology Stack</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Backend</strong>
+                            <span>Python 3.8+</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>GUI Framework</strong>
+                            <span>PyWebView</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Frontend</strong>
+                            <span>HTML5, CSS3, JavaScript</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Build Tool</strong>
+                            <span>PyInstaller</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>📄 License & Credits</h3>
+                    <p>
+                        Built with ❤️ by <strong>ethcocoder</strong>
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: var(--spacing-md);">
+                        © 2025 Tech-Tonicml. All rights reserved.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
