@@ -1,0 +1,41 @@
+END-USER LICENSE AGREEMENT (EULA)
+
+Tech-Tonicml Platform Desktop Application
+
+Copyright (c) 2025 Natnael Ermiyas - Ethco Coders
+All rights reserved.
+
+This End-User License Agreement ("EULA") is a legal agreement between you (either an individual or a single entity) and Ethco Coders for the Tech-Tonicml Platform Desktop Application software product.
+
+By installing, copying, or otherwise using the Tech-Tonicml Platform application, you agree to be bound by the terms of this EULA.
+
+1. GRANT OF LICENSE
+Ethco Coders grants you a non-exclusive, non-transferable, limited license to install and use the Tech-Tonicml Platform Desktop Application on your personal computer or workstation.
+
+2. DESCRIPTION OF OTHER RIGHTS AND LIMITATIONS
+   a) You may not reverse engineer, decompile, or disassemble the Software.
+   b) You may not rent, lease, or lend the Software.
+   c) You may not modify or create derivative works based on the Software.
+
+3. COPYRIGHT
+The Software is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties. The Software is licensed, not sold.
+
+4. WEBSITE ACCESS
+This application provides access to the Tech-Tonicml ML Course Platform (tech-tonicml.gt.tc). Use of the website is subject to the website's own terms of service and privacy policy.
+
+5. NO WARRANTIES
+The Software is provided "AS IS" without warranty of any kind, either express or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose.
+
+6. LIMITATION OF LIABILITY
+In no event shall Ethco Coders be liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use this Software.
+
+7. TERMINATION
+This EULA is effective until terminated. Your rights under this EULA will terminate automatically without notice if you fail to comply with any term(s) of this EULA.
+
+8. UPDATES
+Ethco Coders may provide updates to the Software. Such updates will be subject to this EULA unless other terms accompany the updates.
+
+9. CONTACT INFORMATION
+For questions about this EULA, please visit: tech-tonicml.gt.tc
+
+By clicking "I Agree" or installing the Software, you acknowledge that you have read this agreement, understand it, and agree to be bound by its terms and conditions.

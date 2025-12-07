@@ -54,6 +54,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon='web/assets/icons/techtonicml.ico'  # Custom icon
 )
 
 
